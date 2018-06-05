@@ -56,7 +56,7 @@ class Graph: public LinkedList{
 	/**
 		 * return adjacent elements of the vertex
 		 * @param param1 LinkList head pointer
-		 * @return void
+		 * @return vector<int>
 		 */
 	vector<int> getAdj(int node1){
 		map<int, LinkedList *>::iterator it =  vertex.find(node1);

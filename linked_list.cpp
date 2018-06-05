@@ -6,13 +6,14 @@
  system: C++ windows
 --------------------------------------------------*/
 #include<iostream>
-
+#include<vector>
 using namespace std;
 /**
  * Class LinkList
  * Implements simple stack (LIFO) with simple operation like Push and Pop 
  */
 class LinkedList{
+	friend class Graph;
 	int data;
 	LinkedList* link;
 	public:
@@ -107,6 +108,63 @@ class LinkedList{
 	}
 	
 	/**
+		 * deleting from the end of linklist
+		 * @param param1 LinkList head pointer
+		 * @return void
+		 */
+	LinkedList * delMiddle(LinkedList *head, int data){
+		if(head == NULL){
+			cout<<"Linked list is empty"<<endl;
+			return(head);
+		}
+		//First element is he element to be deleted
+		else if (head->data == data){
+			head = head->delBeg(head);
+			return(head);
+		}
+		else{
+			LinkedList *temp = head;
+			bool flag = false;
+			while(temp != NULL){
+				if(temp->link->data == data){
+					flag = true;
+					break;
+				}
+				temp = temp->link;
+			}
+			if (flag == true){
+				temp->link = temp->link->link;
+				return(head);
+			}
+			else{
+				cout<<"data not found in the linked list"<<endl;
+				return(head);
+			}
+		}
+	}
+	
+	/**
+		 * get adjacent elements in the linklist
+		 * @param param1 LinkList head pointer
+		 * @return void
+		 */
+	vector<int> getNodes(LinkedList *head){
+		vector<int> list;
+		int temp_data;
+		if (head == NULL){
+			return(list);
+		}
+		else{
+			LinkedList *temp = head;
+			while (temp != NULL){
+				list.push_back(temp->data);
+				temp = temp->link;
+			}
+			return(list);
+		}
+	}
+	
+	/**
 		 * display element in the linklist
 		 * @param param1 LinkList head pointer
 		 * @return void
@@ -123,7 +181,31 @@ class LinkedList{
 				}
 			cout<<endl;	
 		}
-	}	
+	}
+	
+	/**
+		 * check if element exists in the linklist
+		 * @param param1 LinkList head pointer
+		 * @param param2 data
+		 * @return void
+		 */	
+	bool finder(LinkedList * head, int data){
+		if (head == NULL){
+			return (false);
+		}
+		else {
+			LinkedList * temp = head;
+			while(temp != NULL){
+				if(temp->data == data){
+					return (true);
+				}
+				temp = temp->link;
+			}
+			return(false);
+		}
+	}
+	
+		
 };
 
 int main(){
@@ -132,9 +214,10 @@ int main(){
 	char character;
 	const char EXIT_CODE = 'X';
 	int value;
+	bool check;
 	
 	do {
-	cout<<"Enter the options for the program \t\n1) B : insert_beg \n2) E : insert_end \n3) D : delete_beg \n4) T: delete_end \n5) Y: display \n"; //
+	cout<<"Enter the options for the program \t\n0) Q: Find existance of element \n1) B : insert_beg \n2) E : insert_end \n3) D : delete_beg \n4) T: delete_end \n5) J: delete_middle \n6) Y: display \n"; //
  	cin>>character;
 	
 	switch(character){
@@ -150,8 +233,16 @@ int main(){
 				    break;
 		case 'T': head = head->delEnd(head);
 				    break;
+		case 'J': cout<<"Enter the value you want to delete";
+				  cin>>value; 
+				  head = head->delMiddle(head,value);
+				  break;		    
 		case 'Y': head->display(head);
 				break;
+		case 'Q' : cout<<"Enter the value you want to check in the list "; 
+				 cin>>value;
+				 (head->finder(head,value))? cout<<"True"<<endl : cout<<"False"<<endl;
+				 break;
 		default: character = 'X';
 				break; 
 		}
