@@ -1,6 +1,6 @@
 import collections
 
-# simple iterative bfs
+# simple iterative bfs Application : topological sort
 
 
 def dfs(graph, root):
