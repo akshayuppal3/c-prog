@@ -4,9 +4,9 @@
 #            2: display adjacent nodes for an edge
 #            3: get adjacent nodes in the graph
 
-from linklist import LinkList
+from linklist2 import LinkList2
 
-class Graph:
+class Graph_weighted:
     def __init__(self):
         self.graph = dict()
 
@@ -19,12 +19,12 @@ class Graph:
 
     # @returns None
     # appends the edges to the link list
-    def add_edge(self,node1,node2):
+    def add_edge(self,node1,node2,weight=None):
         if (node1 not in self.graph):
-            self.graph[node1] = LinkList(node2)
+            self.graph[node1] = LinkList2(node2,weight)
         else:
             head = self.graph[node1]
-            head.append(node2)
+            head.append(node2,weight)
 
     # returns None
     # prints the list of all the elements in the graph
@@ -57,38 +57,38 @@ class Graph:
 
     # @returns a custom graph
     def get_custom_graph(self):
-        g = Graph()
-        g.add_edge(1, 2)
-        g.add_edge(1, 2)
-        g.add_edge(1, 7)
-        g.add_edge(1, 4)
-        g.add_edge(1, 5)
-        g.add_edge(2, 3)
-        g.add_edge(2, 5)
-        g.add_edge(3, 2)
-        g.add_edge(3, 7)
-        g.add_edge(3, 4)
-        g.add_edge(3, 6)
-        g.add_edge(4, 3)
-        g.add_edge(4, 1)
-        g.add_edge(4, 7)
-        g.add_edge(4, 5)
-        g.add_edge(5, 4)
-        g.add_edge(5, 2)
-        g.add_edge(5, 1)
-        g.add_edge(5, 6)
-        g.add_edge(6, 5)
-        g.add_edge(6, 3)
-        g.add_edge(6, 7)
-        g.add_edge(7, 1)
-        g.add_edge(7, 3)
-        g.add_edge(7, 4)
-        g.add_edge(7, 6)
+        g = Graph_weighted()
+        g.add_edge(1, 2, 3)
+        g.add_edge(1, 2, 7)
+        g.add_edge(1, 7, 4)
+        g.add_edge(1, 4, 90)
+        g.add_edge(1, 5, 77)
+        g.add_edge(2, 3, 66)
+        g.add_edge(2, 5, 44)
+        g.add_edge(3, 2, 1)
+        g.add_edge(3, 7, 3)
+        g.add_edge(3, 4, 6)
+        g.add_edge(3, 6, 1)
+        g.add_edge(4, 3, 1)
+        g.add_edge(4, 1, 8)
+        g.add_edge(4, 7, 6)
+        g.add_edge(4, 5, 3)
+        g.add_edge(5, 4, 2)
+        g.add_edge(5, 2, 1)
+        g.add_edge(5, 1, 6)
+        g.add_edge(5, 6, 6)
+        g.add_edge(6, 5, 3)
+        g.add_edge(6, 3, 88)
+        g.add_edge(6, 7, 99)
+        g.add_edge(7, 1, 65)
+        g.add_edge(7, 3, 12)
+        g.add_edge(7, 4, 12)
+        g.add_edge(7, 6, 10)
         return g
 
 if __name__ == '__main__':
-    g = Graph()
+    g = Graph_weighted()
     g = g.get_custom_graph()
 
-    vertices = g.get_vertices()
+    vertices = g.get_adj(7)
     print(vertices)
