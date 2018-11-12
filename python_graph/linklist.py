@@ -15,6 +15,7 @@ class Node:
 
 # Link list collection of nodes
 
+
 class LinkList:
     def __init__(self,data=None):
         self.head = Node(data)
@@ -107,6 +108,18 @@ class LinkList:
                 else:
                     head.next_node = head.next_node.next_node
 
+    # @returns a list of nodes
+    def get_nodes(self):
+        if self.head is None:
+            return None
+        else:
+            nodes = list()
+            head = self.head
+            while head:
+                nodes.append(head.get_data())
+                head = head.next_node
+            return nodes
+
     def display(self):
         if self.head is None:
             print("Empty list")
@@ -115,6 +128,7 @@ class LinkList:
             while head:
                 print(head.get_data())
                 head = head.next_node
+
 
 if __name__ == '__main__':
     list1 = LinkList(10)
@@ -125,3 +139,5 @@ if __name__ == '__main__':
     list1.add_pos(13,1)
     list1.append(22)
     list1.display()
+    Nodes = list1.get_nodes()
+    print(Nodes)
