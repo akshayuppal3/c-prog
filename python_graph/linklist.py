@@ -15,6 +15,7 @@ class Node:
 
 # Link list collection of nodes
 
+
 class LinkList:
     def __init__(self,data=None):
         self.head = Node(data)
@@ -115,6 +116,7 @@ class LinkList:
             while head:
                 print(head.get_data())
                 head = head.next_node
+
 
 if __name__ == '__main__':
     list1 = LinkList(10)
