@@ -2,7 +2,7 @@
 
 # Properties 1: to add edges in the graph
 #            2: display adjacent nodes for an edge
-
+#            3: get adjacent nodes in the graph
 
 from linklist import LinkList
 
