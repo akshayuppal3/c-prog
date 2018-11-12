@@ -24,3 +24,5 @@ if __name__ == '__main__':
     g = Graph_weighted()
     g = g.get_custom_graph()
     info = prims(g,1)
+
+    print("BOO")
