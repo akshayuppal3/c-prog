@@ -112,15 +112,15 @@ class LinkList2:
                 else:
                     head.next_node = head.next_node.next_node
 
-    # @returns a list of nodes
+    # @returns a list of nodes and weights
     def get_nodes(self):
         if self.head is None:
             return None
         else:
-            nodes = list()
+            nodes = dict()
             head = self.head
             while head:
-                nodes.append(head.get_data())
+                nodes[head.get_data()] = head.get_weight()
                 head = head.next_node
             return nodes
 
@@ -139,7 +139,7 @@ if __name__ == '__main__':
     list1.add_end(15,2)
     list1.add_end(20,3)
     list1.delete(10)
-    list1.add_pos(13,1,9)
+    list1.add_pos(13,1)
     list1.append(22,0)
     list1.display()
     Nodes = list1.get_nodes()
