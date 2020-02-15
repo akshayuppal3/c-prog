@@ -14,7 +14,7 @@ def raises(number, exponent):
     if exponent == 0:
         return 1
     else:
-        return number * raises(number, exponent-1)
+        return number * raises(number, exponent - 1)
 
 
 def raise_1(base, exponent):
@@ -48,18 +48,18 @@ def binary_search(sorted_arr, left, right, target):
             return binary_search(sorted_arr, middle + 1, right, target)
 
 
-def choose_k(n , k):
+def choose_k(n, k):
     if k == 0 or k == n:
         return 1
     else:
-        return choose_k(n-1, k) + choose_k(n-1, k-1)
+        return choose_k(n - 1, k) + choose_k(n - 1, k - 1)
 
 
 if __name__ == '__main__':
     assert (raises(2, 6))
     assert (raise_iter(2, 6))
     assert raise_1(2, 6) == 64
-    assert check_palindrome("ti aba it") == True , "not a palindrome"
-    arr = [1,2,3,4,5,6]
-    assert (binary_search(arr, 0, len(arr)-1,  3)) == 2
-    assert (choose_k(4,2)) == 6
+    assert check_palindrome("ti aba it") == True, "not a palindrome"
+    arr = [1, 2, 3, 4, 5, 6]
+    assert (binary_search(arr, 0, len(arr) - 1, 3)) == 2
+    assert (choose_k(4, 2)) == 6
