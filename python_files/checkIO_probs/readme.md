@@ -1,0 +1,1 @@
+###  Containing simple soultions for checkio.problems

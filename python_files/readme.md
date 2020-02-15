@@ -1,1 +1,1 @@
-###  Containing simple soultions for checkio.problems
+###  Containing simple python practice problems
