@@ -55,6 +55,50 @@ def choose_k(n, k):
         return choose_k(n - 1, k) + choose_k(n - 1, k - 1)
 
 
+def find_permute(str):
+    print(str)
+    if len(str) == 1:
+        return str
+    permutations = find_permute(str[1:])
+    results = list()
+    first_char = str[0]
+    print(permutations)
+    for permute in permutations:
+        for idx in range(len(permute)+1):
+            results.append(permute[:idx] + first_char + permute[idx:])
+    return results
+
+
+def permute(so_far, rest, result):
+    if len(rest) == 0:
+        result.append(so_far)
+    else:
+        for i in range(0, len(rest)):
+            next = so_far + rest[i]
+            remaining = rest[:i] + rest[i+1:]
+            permute(next, remaining, result)
+
+
+def subset(so_far, rem):
+    if rem == "":
+        print(so_far)
+    else:
+        subset(so_far + rem[0], rem[1:])
+        subset(so_far, rem[1:])
+
+
+def isAnagram(so_far, rest, lex):
+    if rest == "":
+        if so_far in lex:
+            print(so_far)
+            return True
+    else:
+        for i in range(0,len(rest)):
+            if isAnagram(so_far + rest[i], rest[:i] + rest[i+1:], lex):
+                return True
+    return False
+
+
 if __name__ == '__main__':
     assert (raises(2, 6))
     assert (raise_iter(2, 6))
@@ -63,3 +107,9 @@ if __name__ == '__main__':
     arr = [1, 2, 3, 4, 5, 6]
     assert (binary_search(arr, 0, len(arr) - 1, 3)) == 2
     assert (choose_k(4, 2)) == 6
+    # (find_permute("dogs"))
+    # result = []
+    # permute("", "cat",result)
+    # print(result)
+    # (subset("", "abcd"))
+    print(isAnagram("", "dope", ["dope","pode","boat","toab","rope","epod"]))
